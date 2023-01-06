@@ -13,14 +13,15 @@ jobs:
     container: qmkfm/qmk_cli
     strategy:
       fail-fast: false
-      matrix: 
+      matrix:
         board: [
           "jasonhazel/bad_wings:default",
           "jasonhazel/dust:default",
           "jasonhazel/satpad:default",
           "jasonhazel/glitch:default",
           "jasonhazel/crepe:default",
-          "jasonhazel/lisa:default"
+          "jasonhazel/lisa:default",
+          "jasonhazel/skytoucher:default"
         ]
     steps:
       - name: Checkout QMK
@@ -30,10 +31,10 @@ jobs:
           repository: jasonhazel/qmk_hazel
           submodules: recursive
 
-      
+
       - name: Build firmware
         run: |
-          
+
           make ${{ matrix.board }}
 
       - name: Archive firmware
